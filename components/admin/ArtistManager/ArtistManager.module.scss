@@ -1,0 +1,102 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.table {
+  background: $color-white;
+  border: 1px solid $color-border-light;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.headerRow,
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 80px 120px 60px 90px 100px 140px;
+  gap: 16px;
+  padding: 12px 20px;
+  align-items: center;
+  min-width: 800px;
+}
+
+.headerRow {
+  background: $color-bg-alt;
+  font-size: 0.8125rem;
+  font-weight: $fw-semibold;
+  color: $color-text-soft;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.row {
+  font-size: 0.875rem;
+  border-bottom: 1px solid $color-border-light;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: $color-bg;
+  }
+}
+
+.cell {
+  color: $color-text;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-weight: $fw-medium;
+
+  &.active {
+    background: rgba(74, 124, 89, 0.1);
+    color: $color-success;
+  }
+
+  &.suspended {
+    background: rgba(196, 69, 69, 0.1);
+    color: $color-error;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actionBtn {
+  padding: 4px 10px;
+  border-radius: 3px;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: $fw-medium;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.suspend {
+    background: rgba(196, 69, 69, 0.1);
+    color: $color-error;
+  }
+
+  &.activate {
+    background: rgba(74, 124, 89, 0.1);
+    color: $color-success;
+  }
+
+  &.delete {
+    background: rgba(196, 69, 69, 0.1);
+    color: $color-error;
+  }
+}

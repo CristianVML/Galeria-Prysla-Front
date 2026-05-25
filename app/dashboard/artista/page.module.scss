@@ -1,0 +1,103 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.title {
+  font-family: $font-serif;
+  font-size: 1.5rem;
+  font-weight: $fw-bold;
+  color: $color-text;
+  margin-bottom: 24px;
+}
+
+.empty {
+  text-align: center;
+  padding: 60px 0;
+  color: $color-text-soft;
+
+  p {
+    margin-bottom: 16px;
+  }
+}
+
+.cta {
+  display: inline-block;
+  padding: 12px 28px;
+  background: $color-accent;
+  color: $color-white;
+  border-radius: 4px;
+  font-size: 0.9375rem;
+  font-weight: $fw-semibold;
+  text-decoration: none;
+
+  &:hover {
+    background: $color-accent-hover;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: $color-white;
+  border: 1px solid $color-border-light;
+  border-radius: 6px;
+  flex-wrap: wrap;
+}
+
+.thumb {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+
+  h3 {
+    font-family: $font-serif;
+    font-size: 1rem;
+    font-weight: $fw-semibold;
+    color: $color-text;
+  }
+
+  p {
+    font-size: 0.8125rem;
+    color: $color-text-soft;
+  }
+}
+
+.editBtn {
+  padding: 6px 16px;
+  background: none;
+  color: $color-accent;
+  border: 1px solid $color-accent;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  font-weight: $fw-medium;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba(200, 169, 131, 0.1);
+  }
+}
+
+.rejection {
+  width: 100%;
+  font-size: 0.8125rem;
+  color: $color-error;
+  padding: 8px 12px;
+  background: rgba(196, 69, 69, 0.05);
+  border-radius: 4px;
+}

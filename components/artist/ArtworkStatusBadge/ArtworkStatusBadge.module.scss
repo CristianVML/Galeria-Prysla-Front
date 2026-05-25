@@ -1,0 +1,25 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 0.8125rem;
+  font-weight: $fw-medium;
+  border-radius: 4px;
+}
+
+.pending {
+  background: rgba(212, 167, 71, 0.1);
+  color: $color-warning;
+}
+
+.approved {
+  background: rgba(74, 124, 89, 0.1);
+  color: $color-success;
+}
+
+.rejected {
+  background: rgba(196, 69, 69, 0.1);
+  color: $color-error;
+}

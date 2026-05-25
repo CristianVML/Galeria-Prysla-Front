@@ -1,0 +1,270 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-image: url('/image/backgroundHome.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba($color-white, 0.25);
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  padding: 0 16px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: $color-border;
+  color: $color-accent;
+  font-size: 0.8125rem;
+  font-weight: $fw-medium;
+  border-radius: 4px;
+  margin-bottom: 24px;
+}
+
+.heroTitle {
+  font-family: $font-serif;
+  font-size: 2.5rem;
+  font-weight: $fw-bold;
+  line-height: 1.1;
+  color: $color-text;
+  margin-bottom: 20px;
+
+  @include respond-to(md) { font-size: 3.5rem; }
+  @include respond-to(lg) { font-size: 4rem; }
+}
+
+.highlight {
+  color: $color-accent;
+}
+
+.heroDesc {
+  font-size: 1.0625rem;
+  color: $color-text-soft;
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heroActions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primaryBtn {
+  padding: 14px 32px;
+  background: $color-accent;
+  color: $color-white;
+  border-radius: 4px;
+  font-size: 0.9375rem;
+  font-weight: $fw-semibold;
+  text-decoration: none;
+  transition: background 0.2s;
+
+  &:hover { background: $color-accent-hover; }
+}
+
+.secondaryBtn {
+  padding: 14px 32px;
+  background: $color-white;
+  color: $color-text;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9375rem;
+  font-weight: $fw-semibold;
+  text-decoration: none;
+  transition: background 0.2s;
+
+  &:hover { background: $color-border-light; }
+}
+
+.section {
+  padding: 40px 0;
+}
+
+.sectionAlt {
+  background: $color-bg;
+}
+
+.sectionTitle {
+  font-family: $font-serif;
+  font-size: 2rem;
+  font-weight: $fw-bold;
+  color: $color-text;
+  text-align: center;
+  margin-bottom: 8px;
+
+  @include respond-to(md) { font-size: 2.5rem; }
+}
+
+.sectionSubtitle {
+  font-size: 1rem;
+  color: $color-text-soft;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+
+  @include respond-to(sm) { grid-template-columns: repeat(2, 1fr); }
+  @include respond-to(md) { grid-template-columns: repeat(4, 1fr); }
+}
+
+.newsletterCard {
+  background: $color-bg-alt;
+  border-radius: 16px;
+  padding: 60px 24px;
+  text-align: center;
+  width: 100%;
+}
+
+.newsletterTitle {
+  font-family: $font-serif;
+  font-size: 2rem;
+  font-weight: $fw-bold;
+  color: $color-text;
+  margin-bottom: 16px;
+}
+
+.newsletterDesc {
+  color: $color-text-soft;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto 32px;
+}
+
+.newsletterForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.newsletterRow {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.newsletterInput {
+  width: 100%;
+  max-width: 320px;
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  background: $color-white;
+  font-size: 0.9375rem;
+  color: $color-text;
+  outline: none;
+
+  &::placeholder { color: $color-text-muted; }
+}
+
+.newsletterBtn {
+  height: 48px;
+  padding: 0 32px;
+  border: none;
+  border-radius: 8px;
+  background: $color-accent;
+  color: $color-white;
+  font-size: 0.9375rem;
+  font-weight: $fw-medium;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+
+  &:hover { background: $color-accent-hover; }
+}
+
+.newsletterCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: $color-text-soft;
+
+  input { accent-color: $color-accent; }
+
+  a {
+    color: $color-accent;
+    text-decoration: underline;
+  }
+}
+
+.newsletterMsg {
+  margin-top: 8px;
+  font-size: 0.875rem;
+}
+
+.splitSection {
+  background: $color-bg;
+  padding: 40px 0;
+}
+
+.splitInner {
+  display: flex;
+  flex-direction: column;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+  }
+}
+
+.splitCol {
+  width: 100%;
+
+  @include respond-to(lg) {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.splitCol:first-child {
+  margin-bottom: 40px;
+
+  @include respond-to(lg) {
+    margin-bottom: 0;
+    padding-right: 24px;
+  }
+}
+
+.splitCol:last-child {
+  display: flex;
+  align-items: center;
+
+  @include respond-to(lg) {
+    padding-left: 24px;
+  }
+}

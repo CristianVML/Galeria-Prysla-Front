@@ -1,0 +1,54 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.title {
+  font-family: $font-serif;
+  font-size: 1.5rem;
+  font-weight: $fw-bold;
+  color: $color-text;
+  margin-bottom: 24px;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+
+  @include respond-to(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.cardLink {
+  text-decoration: none;
+  display: block;
+}
+
+.cardLink:hover .card {
+  border-color: $color-accent;
+}
+
+.card {
+  background: $color-white;
+  border: 1px solid $color-border-light;
+  border-radius: 6px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cardValue {
+  font-family: $font-serif;
+  font-size: 2rem;
+  font-weight: $fw-bold;
+  color: $color-accent;
+}
+
+.cardLabel {
+  font-size: 0.875rem;
+  color: $color-text-soft;
+}

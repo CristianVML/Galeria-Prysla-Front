@@ -1,0 +1,123 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 26, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 16px;
+}
+
+.modal {
+  position: relative;
+  background: $color-white;
+  border-radius: 8px;
+  padding: 32px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: $color-text-soft;
+  cursor: pointer;
+  padding: 4px;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.title {
+  font-family: $font-serif;
+  font-size: 1.25rem;
+  font-weight: $fw-bold;
+  color: $color-text;
+  margin-bottom: 8px;
+}
+
+.artwork {
+  font-size: 0.875rem;
+  color: $color-text-soft;
+  margin-bottom: 24px;
+}
+
+.artist {
+  color: $color-accent;
+}
+
+.options {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.option {
+  flex: 1;
+  padding: 16px;
+  border: 1px solid $color-border;
+  border-radius: 6px;
+  background: $color-white;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: $color-accent;
+  }
+
+  &.selected {
+    border-color: $color-accent;
+    background: $color-accent-light;
+  }
+}
+
+.optionTitle {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: $fw-semibold;
+  color: $color-text;
+  margin-bottom: 2px;
+}
+
+.optionDesc {
+  display: block;
+  font-size: 0.8125rem;
+  color: $color-text-soft;
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  background: #25D366;
+  color: $color-white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9375rem;
+  font-weight: $fw-semibold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.disclaimer {
+  font-size: 0.75rem;
+  color: $color-text-muted;
+  margin-top: 16px;
+}

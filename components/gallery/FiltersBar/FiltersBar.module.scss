@@ -1,0 +1,97 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.wrapper {
+  margin-bottom: 32px;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: $fw-medium;
+  color: $color-text;
+  cursor: pointer;
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: $color-accent;
+  }
+
+  svg {
+    transition: transform 0.2s;
+  }
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+.activeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $color-accent;
+}
+
+.panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+  padding: 20px;
+  background: $color-white;
+  border: 1px solid $color-border-light;
+  border-radius: 4px;
+  align-items: flex-end;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 180px;
+}
+
+.label {
+  font-size: 0.8125rem;
+  font-weight: $fw-medium;
+  color: $color-text-soft;
+}
+
+.select {
+  padding: 8px 12px;
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  color: $color-text;
+  background: $color-white;
+  appearance: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: $color-accent;
+  }
+}
+
+.resetBtn {
+  padding: 8px 16px;
+  font-size: 0.8125rem;
+  color: $color-text-soft;
+  background: none;
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+
+  &:hover {
+    color: $color-text;
+    border-color: $color-text-soft;
+  }
+}

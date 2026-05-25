@@ -1,0 +1,19 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.title {
+  font-family: $font-serif;
+  font-size: 1.5rem;
+  font-weight: $fw-bold;
+  color: $color-text;
+  margin-bottom: 24px;
+}
+
+.error {
+  font-size: 0.875rem;
+  color: $color-error;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  background: rgba($color-error, 0.06);
+  border-radius: 4px;
+}

@@ -1,0 +1,39 @@
+@use '../../styles/variables' as *;
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 16px 96px;
+}
+
+.title {
+  font-family: $font-serif;
+  font-size: 2rem;
+  font-weight: $fw-bold;
+  color: $color-text;
+  margin-bottom: 8px;
+}
+
+.date {
+  font-size: 0.875rem;
+  color: $color-text-muted;
+  margin-bottom: 48px;
+}
+
+.section {
+  margin-bottom: 36px;
+
+  h2 {
+    font-family: $font-serif;
+    font-size: 1.25rem;
+    font-weight: $fw-semibold;
+    color: $color-text;
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: $color-text-soft;
+  }
+}

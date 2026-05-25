@@ -1,0 +1,299 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 48px 0;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    gap: 64px;
+  }
+}
+
+/* ─── Left: Image ─── */
+
+.imageCol {
+  flex-shrink: 0;
+
+  @include respond-to(lg) {
+    width: 55%;
+    position: sticky;
+    top: 24px;
+    align-self: flex-start;
+  }
+}
+
+.canvasFrame {
+  position: relative;
+  background: $color-white;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  display: block;
+  max-width: 100%;
+  max-height: 700px;
+  width: auto;
+  height: auto;
+}
+
+.zoomBtn {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.95);
+  color: $color-text;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: $fw-medium;
+  cursor: pointer;
+  transition: background 0.2s;
+  backdrop-filter: blur(4px);
+
+  &:hover {
+    background: $color-white;
+  }
+}
+
+/* ─── Right: Info ─── */
+
+.infoCol {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: $color-text-soft;
+  text-decoration: none;
+  width: fit-content;
+
+  &:hover {
+    color: $color-accent;
+  }
+}
+
+.badge {
+  display: inline-block;
+  width: fit-content;
+  padding: 5px 12px;
+  background: rgba($color-accent, 0.12);
+  color: $color-accent;
+  font-size: 0.6875rem;
+  font-weight: $fw-bold;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+}
+
+.title {
+  font-family: $font-serif;
+  font-size: 2.25rem;
+  font-weight: $fw-bold;
+  color: $color-text;
+  line-height: 1.1;
+
+  @include respond-to(md) { font-size: 2.75rem; }
+}
+
+.artistLine {
+  font-size: 0.9375rem;
+  color: $color-text-soft;
+}
+
+.artistLink {
+  color: $color-accent;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.price {
+  font-family: $font-serif;
+  font-size: 1.75rem;
+  font-weight: $fw-bold;
+  color: $color-text;
+}
+
+.description {
+  font-size: 0.9375rem;
+  color: $color-text-soft;
+  line-height: 1.7;
+}
+
+/* ─── Specs Table ─── */
+
+.specs {
+  background: $color-white;
+  border: 1px solid $color-border-light;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.specRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+
+  & + & {
+    border-top: 1px solid $color-border-light;
+  }
+}
+
+.specLabel {
+  font-size: 0.8125rem;
+  color: $color-text-muted;
+  font-weight: $fw-medium;
+}
+
+.specValue {
+  font-size: 0.875rem;
+  color: $color-text;
+  text-align: right;
+}
+
+/* ─── Acquisition Cards ─── */
+
+.acquisition {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.acqTitle {
+  font-family: $font-serif;
+  font-size: 1rem;
+  font-weight: $fw-semibold;
+  color: $color-text;
+}
+
+.acqCards {
+  display: flex;
+  gap: 12px;
+}
+
+.acqCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid $color-border-light;
+  border-radius: 8px;
+  background: $color-white;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+
+  &:hover {
+    border-color: $color-accent;
+  }
+}
+
+.acqCardActive {
+  border-color: $color-accent;
+  background: rgba($color-accent, 0.15);
+  box-shadow: 0 0 0 1px $color-accent;
+}
+
+.acqLabel {
+  font-size: 0.9375rem;
+  font-weight: $fw-semibold;
+  color: $color-text;
+}
+
+.acqDesc {
+  font-size: 0.75rem;
+  color: $color-text-muted;
+}
+
+.acqPrice {
+  font-family: $font-serif;
+  font-size: 1.0625rem;
+  font-weight: $fw-bold;
+  color: $color-accent;
+  margin-top: 4px;
+}
+
+/* ─── WhatsApp Button ─── */
+
+.whatsappBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 32px;
+  background: #25D366;
+  color: $color-white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: $fw-semibold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.legal {
+  font-size: 0.75rem;
+  color: $color-text-muted;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ─── Zoom ─── */
+
+.zoomOverlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.9);
+  cursor: zoom-out;
+  padding: 40px;
+}
+
+.zoomClose {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.zoomImg {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}

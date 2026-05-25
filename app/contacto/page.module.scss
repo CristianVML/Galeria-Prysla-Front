@@ -1,0 +1,59 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 16px 96px;
+}
+
+.title {
+  font-family: $font-serif;
+  font-size: 2rem;
+  font-weight: $fw-bold;
+  color: $color-text;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: $color-text-soft;
+  margin-bottom: 48px;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card {
+  background: $color-bg-alt;
+  border-radius: 12px;
+  padding: 32px;
+
+  h2 {
+    font-family: $font-serif;
+    font-size: 1.125rem;
+    font-weight: $fw-semibold;
+    color: $color-text;
+    margin-bottom: 8px;
+  }
+
+  a {
+    color: $color-accent;
+    text-decoration: none;
+    font-size: 0.9375rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: $color-text-soft;
+    line-height: 1.6;
+  }
+}

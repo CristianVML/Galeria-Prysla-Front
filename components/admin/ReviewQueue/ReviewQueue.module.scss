@@ -1,0 +1,187 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.empty {
+  text-align: center;
+  padding: 60px 0;
+  color: $color-text-soft;
+}
+
+.queue {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: $color-white;
+  border: 1px solid $color-border-light;
+  border-radius: 6px;
+  position: relative;
+}
+
+.imageCol {
+  flex-shrink: 0;
+  width: 140px;
+}
+
+.thumb {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.infoCol {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-family: $font-serif;
+  font-size: 1.0625rem;
+  font-weight: $fw-semibold;
+  color: $color-text;
+  margin-bottom: 2px;
+}
+
+.artist {
+  font-size: 0.875rem;
+  color: $color-text-soft;
+  margin-bottom: 4px;
+}
+
+.detail {
+  font-size: 0.8125rem;
+  color: $color-text-muted;
+  margin-bottom: 2px;
+}
+
+.details {
+  font-size: 0.8125rem;
+  color: $color-text-muted;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: $color-text;
+  line-height: 1.5;
+}
+
+.actionsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+  justify-content: flex-end;
+}
+
+.approveBtn {
+  padding: 10px 24px;
+  background: $color-success;
+  color: $color-white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: $fw-medium;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover { opacity: 0.9; }
+}
+
+.rejectBtn {
+  padding: 10px 24px;
+  background: $color-white;
+  color: $color-error;
+  border: 1px solid $color-error;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: $fw-medium;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba(196, 69, 69, 0.05);
+  }
+}
+
+.rejectOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.rejectBox {
+  padding: 24px;
+  max-width: 400px;
+  width: 100%;
+
+  h4 {
+    font-family: $font-serif;
+    font-size: 1.0625rem;
+    margin-bottom: 12px;
+  }
+}
+
+.rejectTextarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  resize: vertical;
+  font-family: inherit;
+  margin-bottom: 12px;
+
+  &:focus {
+    outline: none;
+    border-color: $color-accent;
+  }
+}
+
+.rejectActions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.cancelBtn {
+  padding: 8px 16px;
+  background: none;
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.confirmRejectBtn {
+  padding: 8px 16px;
+  background: $color-error;
+  color: $color-white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
