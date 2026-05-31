@@ -2,15 +2,14 @@ import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 import { authOptions } from '@/lib/auth'
 import ArtistManager from '@/components/admin/ArtistManager/artist-manager'
+import { ENDPOINTS } from '@/lib/api'
 import styles from './page.module.scss'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
 
 export default async function AdminArtistsPage() {
   const session = await getServerSession(authOptions)
   if (!session || (session.user as any)?.role !== 'admin') redirect('/login')
 
-  const res = await fetch(`${API_URL}/artists`, { cache: 'no-store' })
+  const res = await fetch(ENDPOINTS.artists.base, { cache: 'no-store' })
   const artists = res.ok ? await res.json() : []
 
   return (

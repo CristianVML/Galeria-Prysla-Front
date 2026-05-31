@@ -4,9 +4,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import UploadForm from '@/components/artist/UploadForm/upload-form'
+import { ENDPOINTS } from '@/lib/api'
 import styles from './page.module.scss'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
 
 export default function UploadArtworkPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -23,7 +22,7 @@ export default function UploadArtworkPage() {
       const artistId = (session?.user as any)?.id
 
       // 1. Crear la obra sin imágenes
-      const artworkRes = await fetch(`${API_URL}/artworks`, {
+      const artworkRes = await fetch(ENDPOINTS.artworks.base, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -58,7 +57,7 @@ export default function UploadArtworkPage() {
           fileForm.append('image', files[i])
           fileForm.append('artworkId', String(artworkId))
 
-          const uploadRes = await fetch(`${API_URL}/images/upload`, {
+          const uploadRes = await fetch(ENDPOINTS.images.upload, {
             method: 'POST',
             headers: {
               Authorization: `Bearer ${token}`,

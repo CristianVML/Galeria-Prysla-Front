@@ -6,9 +6,8 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Input from '@/components/ui/Input/input'
 import ArtworkCard from '@/components/artwork/ArtworkCard/artwork-card'
+import { ENDPOINTS } from '@/lib/api'
 import styles from './page.module.scss'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
 
 interface Artwork {
   id: number
@@ -60,7 +59,7 @@ export default function EditProfilePage() {
   async function fetchArtworks(artistId: number) {
     setArtworksLoading(true)
     try {
-      const res = await fetch(`${API_URL}/artworks?artist_id=${artistId}`)
+      const res = await fetch(ENDPOINTS.artworks.byArtist(artistId))
       if (res.ok) {
         const data = await res.json()
         setArtworks(Array.isArray(data) ? data : [])
@@ -93,7 +92,7 @@ export default function EditProfilePage() {
       body.append('image', file)
       body.append('artistId', String(userId))
 
-      const res = await fetch(`${API_URL}/images/upload-profile`, {
+      const res = await fetch(ENDPOINTS.images.uploadProfile, {
         method: 'POST',
         headers: { Authorization: `Bearer ${getToken()}` },
         body,
@@ -122,7 +121,7 @@ export default function EditProfilePage() {
 
     try {
       const userId = (session?.user as any)?.id
-      const res = await fetch(`${API_URL}/artists/${userId}`, {
+      const res = await fetch(ENDPOINTS.artists.byId(userId), {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

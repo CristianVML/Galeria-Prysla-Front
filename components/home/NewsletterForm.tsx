@@ -3,9 +3,8 @@
 import { useState, FormEvent, useRef } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 import Link from 'next/link'
+import { ENDPOINTS } from '@/lib/api'
 import styles from '@/app/page.module.scss'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''
 
 export default function NewsletterForm() {
@@ -33,7 +32,7 @@ export default function NewsletterForm() {
     }
 
     try {
-      const res = await fetch(`${API_URL}/newsletter/subscribe`, {
+      const res = await fetch(ENDPOINTS.newsletter.subscribe, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, captchaToken }),

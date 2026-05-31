@@ -4,9 +4,8 @@ import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import ArtworkCard from '@/components/artwork/ArtworkCard/artwork-card'
+import { ENDPOINTS } from '@/lib/api'
 import styles from './page.module.scss'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
 
 interface Artwork {
   id: number
@@ -29,7 +28,7 @@ export default function MyArtworksPage() {
     if (!userId) return
 
     setLoading(true)
-    fetch(`${API_URL}/artworks?artist_id=${userId}`)
+    fetch(ENDPOINTS.artworks.byArtist(userId))
       .then((res) => res.ok ? res.json() : [])
       .then((data) => setArtworks(Array.isArray(data) ? data : []))
       .catch(() => {})

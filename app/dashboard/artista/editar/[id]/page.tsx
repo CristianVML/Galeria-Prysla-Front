@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import UploadForm from '@/components/artist/UploadForm/upload-form'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
+import { ENDPOINTS } from '@/lib/api'
 
 export default function EditArtworkPage() {
   const { id } = useParams()
@@ -18,7 +17,7 @@ export default function EditArtworkPage() {
     async function load() {
       if (!session?.user) return
       const token = (session.user as any).accessToken
-      const res = await fetch(`${API_URL}/artworks/${id}`, {
+      const res = await fetch(ENDPOINTS.artworks.byId(id as string), {
         headers: { Authorization: `Bearer ${token}` },
       })
       if (res.ok) {
@@ -43,7 +42,7 @@ export default function EditArtworkPage() {
 
   async function handleSubmit(data: any, _files?: FileList | null) {
     const token = (session?.user as any)?.accessToken
-    const res = await fetch(`${API_URL}/artworks/${id}`, {
+    const res = await fetch(ENDPOINTS.artworks.byId(id as string), {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

@@ -5,9 +5,8 @@ import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import type { ArtworkData } from '@/types'
 import ReviewQueue from '@/components/admin/ReviewQueue/review-queue'
+import { ENDPOINTS } from '@/lib/api'
 import styles from './page.module.scss'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
 
 interface Props {
   artworks: ArtworkData[]
@@ -22,7 +21,7 @@ export default function ReviewActions({ artworks }: Props) {
     setError('')
     const token = (session?.user as any)?.accessToken
     try {
-      const res = await fetch(`${API_URL}/reviews/artworks/${id}/approve`, {
+      const res = await fetch(ENDPOINTS.reviews.approve(id), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +40,7 @@ export default function ReviewActions({ artworks }: Props) {
     setError('')
     const token = (session?.user as any)?.accessToken
     try {
-      const res = await fetch(`${API_URL}/reviews/artworks/${id}/approve`, {
+      const res = await fetch(ENDPOINTS.reviews.approve(id), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

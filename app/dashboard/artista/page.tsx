@@ -3,9 +3,8 @@ import { redirect } from 'next/navigation'
 import { authOptions } from '@/lib/auth'
 import ArtworkStatusBadge from '@/components/artist/ArtworkStatusBadge/artwork-status-badge'
 import Link from 'next/link'
+import { ENDPOINTS } from '@/lib/api'
 import styles from './page.module.scss'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
 
 export default async function ArtistDashboardPage() {
   const session = await getServerSession(authOptions)
@@ -14,7 +13,7 @@ export default async function ArtistDashboardPage() {
   const artistId = (session.user as any).id
   const token = (session.user as any).accessToken
 
-  const res = await fetch(`${API_URL}/artworks?artist_id=${artistId}`, {
+  const res = await fetch(ENDPOINTS.artworks.byArtist(artistId), {
     cache: 'no-store',
     headers: { Authorization: `Bearer ${token}` },
   })

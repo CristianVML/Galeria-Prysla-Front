@@ -4,9 +4,8 @@ import { useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Input from '@/components/ui/Input/input'
+import { ENDPOINTS } from '@/lib/api'
 import styles from './page.module.scss'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -47,7 +46,7 @@ export default function RegisterPage() {
       if (photoFile) {
         const photoForm = new FormData()
         photoForm.append('image', photoFile)
-        const uploadRes = await fetch(`${API_URL}/images/upload-profile-temp`, {
+        const uploadRes = await fetch(ENDPOINTS.images.uploadTempProfile, {
           method: 'POST',
           body: photoForm,
         })
@@ -56,7 +55,7 @@ export default function RegisterPage() {
         photoUrl = uploadData.url
       }
 
-      const res = await fetch(`${API_URL}/auth/artists/register`, {
+      const res = await fetch(ENDPOINTS.auth.artistRegister, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...formData, photoUrl }),

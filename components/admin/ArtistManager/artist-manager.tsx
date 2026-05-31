@@ -4,9 +4,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import type { ArtistData } from '@/types'
+import { ENDPOINTS } from '@/lib/api'
 import styles from './ArtistManager.module.scss'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
 
 interface ArtistManagerProps {
   artists: ArtistData[]
@@ -28,7 +27,7 @@ export default function ArtistManager({ artists }: ArtistManagerProps) {
   async function handleToggleStatus(artist: ArtistData) {
     setLoadingId(artist.id)
     const newStatus = artist.accountStatus === 'active' ? 'suspended' : 'active'
-    await fetch(`${API_URL}/artists/${artist.id}/status`, {
+    await fetch(ENDPOINTS.artists.status(artist.id), {
       method: 'PATCH',
       headers: getHeaders(),
       body: JSON.stringify({ accountStatus: newStatus }),
@@ -40,7 +39,7 @@ export default function ArtistManager({ artists }: ArtistManagerProps) {
   async function handleDelete(artist: ArtistData) {
     if (!confirm(`¿Eliminar a "${artist.name}" y todas sus obras? Esta acción no se puede deshacer.`)) return
     setLoadingId(artist.id)
-    await fetch(`${API_URL}/artists/${artist.id}`, {
+    await fetch(ENDPOINTS.artists.byId(artist.id), {
       method: 'DELETE',
       headers: getHeaders(),
     })

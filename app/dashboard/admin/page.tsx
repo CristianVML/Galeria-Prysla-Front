@@ -2,9 +2,8 @@ import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { authOptions } from '@/lib/auth'
+import { ENDPOINTS } from '@/lib/api'
 import styles from './page.module.scss'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
 
 export default async function AdminDashboardPage() {
   const session = await getServerSession(authOptions)
@@ -12,7 +11,7 @@ export default async function AdminDashboardPage() {
 
   const token = (session.user as any).accessToken
 
-  const res = await fetch(`${API_URL}/dashboard/stats`, {
+  const res = await fetch(ENDPOINTS.dashboard.stats, {
     cache: 'no-store',
     headers: { Authorization: `Bearer ${token}` },
   })

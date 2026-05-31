@@ -5,17 +5,16 @@ import styles from './page.module.scss'
 import NewsletterForm from '@/components/home/NewsletterForm'
 import FeaturedArtist from '@/components/home/FeaturedArtist'
 import ArtworkCard from '@/components/artwork/ArtworkCard/artwork-card'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
+import { ENDPOINTS } from '@/lib/api'
 
 export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
   const [featuredRes, latestRes, artistsRes] = await Promise.all([
-    fetch(`${API_URL}/artworks?status=approved`, { cache: 'no-store' }),
-    fetch(`${API_URL}/artworks?status=approved`, { cache: 'no-store' }),
-    fetch(`${API_URL}/artists`, { cache: 'no-store' }),
+    fetch(ENDPOINTS.artworks.byStatus('approved'), { cache: 'no-store' }),
+    fetch(ENDPOINTS.artworks.byStatus('approved'), { cache: 'no-store' }),
+    fetch(ENDPOINTS.artists.base, { cache: 'no-store' }),
   ])
 
   const allArtworks = featuredRes.ok ? await featuredRes.json() : []

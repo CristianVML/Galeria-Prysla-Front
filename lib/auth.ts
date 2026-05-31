@@ -1,7 +1,6 @@
 import { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
+import { ENDPOINTS } from '@/lib/api'
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -16,7 +15,7 @@ export const authOptions: NextAuthOptions = {
         if (!credentials?.email || !credentials?.password) return null
 
         try {
-          const artistRes = await fetch(`${API_URL}/auth/artists/login`, {
+          const artistRes = await fetch(ENDPOINTS.auth.artistLogin, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -41,7 +40,7 @@ export const authOptions: NextAuthOptions = {
             }
           }
 
-          const adminRes = await fetch(`${API_URL}/auth/admin/login`, {
+          const adminRes = await fetch(ENDPOINTS.auth.adminLogin, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -93,7 +92,7 @@ export const authOptions: NextAuthOptions = {
       }
 
       if (!user && token.accessToken && token.role === 'artist') {
-        const data = await fetch(`${API_URL}/artists/${token.id}`, {
+        const data = await fetch(ENDPOINTS.artists.byId(token.id as string), {
           headers: { Authorization: `Bearer ${token.accessToken}` },
         }).then((r) => r.ok ? r.json() : null)
 

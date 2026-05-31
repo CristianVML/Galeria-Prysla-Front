@@ -1,9 +1,8 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import ArtworkCard from '@/components/artwork/ArtworkCard/artwork-card'
+import { ENDPOINTS } from '@/lib/api'
 import styles from './page.module.scss'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
 
 interface Props {
   params: Promise<{ id: string }>
@@ -12,7 +11,7 @@ interface Props {
 export default async function ArtistDetailPage({ params }: Props) {
   const { id } = await params
 
-  const res = await fetch(`${API_URL}/artists/${id}`, { cache: 'no-store' })
+  const res = await fetch(ENDPOINTS.artists.byId(id), { cache: 'no-store' })
   if (!res.ok) notFound()
 
   const artist = await res.json()

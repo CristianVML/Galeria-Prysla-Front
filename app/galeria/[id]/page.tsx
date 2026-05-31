@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation'
 import ArtworkDetailClient from './artwork-detail-client'
+import { ENDPOINTS } from '@/lib/api'
 import styles from './page.module.scss'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
 
 interface Props {
   params: Promise<{ id: string }>
@@ -11,7 +10,7 @@ interface Props {
 export default async function ArtworkDetailPage({ params }: Props) {
   const { id } = await params
 
-  const res = await fetch(`${API_URL}/artworks/${id}`, { cache: 'no-store' })
+  const res = await fetch(ENDPOINTS.artworks.byId(id), { cache: 'no-store' })
   if (!res.ok) notFound()
 
   const artwork = await res.json()

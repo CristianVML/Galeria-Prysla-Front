@@ -1,15 +1,14 @@
 import GalleryClient from './gallery-client'
+import { ENDPOINTS } from '@/lib/api'
 import styles from './page.module.scss'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
 
 export const dynamic = 'force-dynamic'
 
 export default async function GalleryPage() {
   const [artworksRes, artistsRes, techniquesRes] = await Promise.all([
-    fetch(`${API_URL}/artworks?status=approved`, { cache: 'no-store' }),
-    fetch(`${API_URL}/artists`, { cache: 'no-store' }),
-    fetch(`${API_URL}/techniques`, { cache: 'no-store' }),
+    fetch(ENDPOINTS.artworks.byStatus('approved'), { cache: 'no-store' }),
+    fetch(ENDPOINTS.artists.base, { cache: 'no-store' }),
+    fetch(ENDPOINTS.techniques.base, { cache: 'no-store' }),
   ])
 
   const artworks: any[] = artworksRes.ok ? await artworksRes.json() : []
